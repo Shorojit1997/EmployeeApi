@@ -5,7 +5,7 @@ namespace EmployeeApi.Model
 {
     public class EmployeeViewModel:BaseViewModel
     {
-        public List<EmployeeModel>? Employees { get; set; } = new List<EmployeeModel>();
+        public List<EmployeeModel>? Employees { get; set; } = new List<EmployeeModel>() { };
 
     }
 }

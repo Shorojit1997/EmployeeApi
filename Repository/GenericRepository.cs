@@ -35,7 +35,7 @@ namespace EmployeeApi.Repository
         }
 
 
-        public virtual async Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             return await dbset.FindAsync(id);
         }

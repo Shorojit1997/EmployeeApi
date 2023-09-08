@@ -8,5 +8,9 @@ namespace EmployeeApi.Services
         Task<AttendanceViewModel> AddAttdanceAsysnc(AttendenceModel attendence);
 
         Task<EmployeeViewModel> GetThirdHightestSalaryAsync();
+
+        Task<EmployeeViewModel> GetEmployeeWhoHasNoAbsentRecordAsync();
+
+        Task<MonthlyReportViewModel >GetMonthlyReportAsync();
     }
 }

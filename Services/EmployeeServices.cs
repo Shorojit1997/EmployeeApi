@@ -21,7 +21,9 @@ namespace EmployeeApi.Services
             {
                 EmployeeId = attendence.EmployeeId,
                 AttendanceDate = DateTime.Now,
-                IsPresent = true
+                IsPresent = attendence.IsPresent,
+                IsAbsent = attendence.IsAbsent,
+                IsOffDay = attendence.IsOffDay,
              };
 
             await _unitOfWork.Attendance.AddAsync(newAttdence);
@@ -54,6 +56,35 @@ namespace EmployeeApi.Services
 
             return viewModel;
 
+        }
+
+        public async Task<EmployeeViewModel> GetEmployeeWhoHasNoAbsentRecordAsync()
+        {
+            var employee=await _unitOfWork.Employee.GetEmployeeWhoHasNoAbsentRecordAsync();
+            var newEmployee = new EmployeeViewModel()
+            {
+                Status = 100,
+                Success = true,
+                Employees = employee
+                .Select(employee => new EmployeeModel()
+                { Name = employee.Name, Salary = employee.Salary, Code = employee.Code }).ToList(),
+            };
+
+            return newEmployee;
+        }
+
+        public async Task<MonthlyReportViewModel > GetMonthlyReportAsync()
+        {
+            var employee= await _unitOfWork.Employee.GetMonthlyReportAsync();
+
+            var newEmployee = new MonthlyReportViewModel()
+            {
+                Status=200,
+                Success = true,
+                Empoyees=employee
+            };
+
+            return newEmployee;
         }
 
         public async Task<EmployeeViewModel> GetThirdHightestSalaryAsync()
